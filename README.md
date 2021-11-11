@@ -1,0 +1,2 @@
+# Verkkokauppa
+pieni verkkokauppasovellus
