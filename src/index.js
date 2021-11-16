@@ -1,11 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const app = express()
+const productRoute = require('./routes/productRoute')
 
 require('dotenv').config()
 
-const app = express()
-const URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@verkkokauppa.clljs.mongodb.net/products?retryWrites=true&w=majority`
+
+const URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@verkkokauppa.clljs.mongodb.net/verkkokauppa?retryWrites=true&w=majority`
 const PORT = process.env.PORT || 5000
 
 mongoose
@@ -22,5 +24,6 @@ mongoose
 
 app.use(express.json())
 app.use(cors())
+app.use('/api/products', productRoute);
 app.listen(PORT, () => `App running on port ${PORT}`)
 
