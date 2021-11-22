@@ -1,16 +1,22 @@
-const { Product } = require('../models/models')
+const Product = require('../models/Product')
+const Category = require('../models/Category')
 
 exports.saveProduct = async (req, res) => {
     try {
-        const newProduct = await Product.insertMany({
+        const newProductObj = new Product({
             name: req.body.name,
-            categories: [{
-                _id: req.body.categories._id,
-            }],
+            categories: req.body.categories,
             price: req.body.price,
             productDescription: req.body.productDescription
         })
-        res.json(newProduct)
+        await Product.insertMany(newProductObj)
+        for (let i = 0; i <  req.body.categories.length; i++) {
+            await Category.updateOne({
+                '_id': req.body.categories[i]._id },
+                { $push: { products : newProductObj._id }
+            })
+        }
+        res.json(newProductObj)
     } catch(err) {
         res.json({ error: err.message })
     }
@@ -27,8 +33,7 @@ exports.findProducts = async (req, res) => {
 
 exports.findProductById = async (req, res) => {
     try {
-        const id = req.params.id
-        const product = await Product.findById(id).populate('categories')
+        const product = await Product.findById(req.params.id).populate('categories')
         res.json(product)
     } catch(err) {
         res.json({ error: err.message })

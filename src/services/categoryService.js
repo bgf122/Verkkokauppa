@@ -1,11 +1,21 @@
-const { Category } = require('../models/models')
+const Category = require('../models/Category')
 
 exports.saveCategory = async (req, res) => {
     try {
-        const newCategory = await Category.insertMany({
-            name: req.body.name            
+        const newCategory = new Category({
+            name: req.body.name
         })
+        await Category.insertMany(newCategory)
         res.json(newCategory)
+    } catch(err) {
+        res.json({ error: err.message })
+    }
+}
+
+exports.findCategories = async (req, res) => {
+    try {
+        const categories = await Category.find().populate('products')
+        res.json(categories)
     } catch(err) {
         res.json({ error: err.message })
     }
@@ -13,8 +23,7 @@ exports.saveCategory = async (req, res) => {
 
 exports.findCategoryById = async (req, res) => {
     try {
-        const id = req.params.id
-        const category = await Category.findById(id)
+        const category = await Category.findById(req.params.id).populate('products')
         res.json(category)
     } catch(err) {
         res.json({ error: err.message })
