@@ -13,7 +13,7 @@ exports.saveImage = async (req, res) => {
                 contentType: 'image/png'
             }
         })
-        newImage.save()
+        await Image.insertMany(newImage)
         res.json(newImage)
     } catch(err) {
         res.json({ error: err.message })
