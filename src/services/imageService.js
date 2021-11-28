@@ -9,7 +9,7 @@ exports.saveImage = async (req, res) => {
             name: req.body.name,
             desc: req.body.desc,
             img: {
-                data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+                data: fs.readFileSync(path.join(__dirname + '../uploads/' + req.file.filename)),
                 contentType: 'image/png'
             }
         })
