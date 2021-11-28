@@ -15,6 +15,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get('/:id', service.findImageById)
-router.post('/', upload.array('image'), service.saveImage)
+router.post('/', upload.single('image'), service.saveImage)
 
 module.exports = router
