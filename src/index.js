@@ -29,3 +29,7 @@ app.use('/api/images', imageRoute);
 app.use('/api/products', productRoute);
 app.use('/api/categories', categoryRoute);
 app.listen(PORT, () => `App running on port ${PORT}`)
+app.use(function (err, req, res, next) {
+  console.log('This is the invalid field ->', err.field)
+  next(err)
+})
