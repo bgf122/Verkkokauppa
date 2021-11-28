@@ -9,9 +9,9 @@ const Image = mongoose.model(
         description: {
             type: String
         },
-        img: {
+        image: {
             data: Buffer,
-            type: String
+            contentType: String
         }
     })
 )

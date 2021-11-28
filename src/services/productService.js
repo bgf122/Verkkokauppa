@@ -34,7 +34,7 @@ exports.saveProduct = async (req, res) => {
 
 exports.findProducts = async (req, res) => {
     try {
-        const products = await Product.find().populate('categories')
+        const products = await Product.find().populate('categories').populate('images')
         res.json(products)
     } catch(err) {
         res.json({ error: err.message })
@@ -43,7 +43,7 @@ exports.findProducts = async (req, res) => {
 
 exports.findProductById = async (req, res) => {
     try {
-        const product = await Product.findById(req.params.id).populate('categories')
+        const product = await Product.findById(req.params.id).populate('categories').populate('images')
         res.json(product)
     } catch(err) {
         res.json({ error: err.message })
