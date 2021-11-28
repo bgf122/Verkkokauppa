@@ -6,10 +6,11 @@ const Image = mongoose.model(
         name: {
             type: String
         },
-        imageDescription: {
+        description: {
             type: String
         },
         img: {
+            data: Buffer,
             type: String
         }
     })

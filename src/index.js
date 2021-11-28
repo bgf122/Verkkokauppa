@@ -8,7 +8,6 @@ const imageRoute = require('./routes/imagesRoute')
 
 require('dotenv').config()
 
-
 const URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@verkkokauppa.clljs.mongodb.net/verkkokauppa?retryWrites=true&w=majority`
 const PORT = process.env.PORT || 5000
 

@@ -1,13 +1,19 @@
 const Product = require('../models/Product')
 const Category = require('../models/Category')
+const Image = require('../models/Image')
 
 exports.saveProduct = async (req, res) => {
     try {
+        const imageArray = [{}]
+        for (let i = 0; i < req.body.images.length; i++) {
+            imageArray.push(req.body.images[i]._id)
+        }
         const newProductObj = new Product({
             name: req.body.name,
             categories: req.body.categories,
             price: req.body.price,
-            productDescription: req.body.productDescription
+            productDescription: req.body.productDescription,
+            images: imageArray
         })
         await Product.insertMany(newProductObj)
         for (let i = 0; i <  req.body.categories.length; i++) {
@@ -16,6 +22,10 @@ exports.saveProduct = async (req, res) => {
                 { $push: { products : newProductObj._id }
             })
         }
+        for (let i = 0; i< req.body.images.length; i++) {
+            await Image.insertMany(req.body.images[i])
+        }
+
         res.json(newProductObj)
     } catch(err) {
         res.json({ error: err.message })

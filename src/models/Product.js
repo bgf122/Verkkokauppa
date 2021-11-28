@@ -9,8 +9,7 @@ const Product = mongoose.model(
         },
         categories: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Category',
-            default: undefined
+            ref: 'Category'
         }],
         price: {
             type: Number,
