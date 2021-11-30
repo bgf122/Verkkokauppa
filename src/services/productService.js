@@ -8,7 +8,7 @@ exports.saveProduct = async (req, res) => {
             categories: req.body.categories,
             price: req.body.price,
             productDescription: req.body.productDescription,
-            images: req.body.images[i]
+            images: req.body.images
         })
         await Product.insertMany(newProductObj)
         for (let i = 0; i <  req.body.categories.length; i++) {
