@@ -14,7 +14,7 @@ exports.saveImage = async (req, res) => {
             }
         })
         await Image.insertMany(newImage)
-        res.json(newImage)
+        res.json(newImage._id)
     } catch(err) {
         res.json({ error: err.message })
     }
