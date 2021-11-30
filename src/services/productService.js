@@ -3,16 +3,12 @@ const Category = require('../models/Category')
 
 exports.saveProduct = async (req, res) => {
     try {
-        const imageArray = [{}]
-        for (let i = 0; i < req.body.images.length; i++) {
-            imageArray.push(req.body.images[i]._id)
-        }
         const newProductObj = new Product({
             name: req.body.name,
             categories: req.body.categories,
             price: req.body.price,
             productDescription: req.body.productDescription,
-            images: imageArray
+            images: req.body.images[i]
         })
         await Product.insertMany(newProductObj)
         for (let i = 0; i <  req.body.categories.length; i++) {
