@@ -17,7 +17,7 @@ const Product = mongoose.model(
         },
         images: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Images'
+            ref: 'Image'
         }],
         productDescription: {
             type: String,
