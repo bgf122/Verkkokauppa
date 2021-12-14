@@ -7,7 +7,8 @@ This is the backend of verkkokauppa_react running @ https://verkkokauppa-bgf-fro
 ### Products
 
 $ GET api/products  
->returns all products in the database  <
+>returns all products in the database  
+<
 $ GET api/products/:id  
 >returns a single product matching the id  
 $ POST api/products  
