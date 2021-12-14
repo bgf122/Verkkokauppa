@@ -27,4 +27,4 @@ $ POST api/categories
 
 ### Images
 $ POST api/images  
-  saves a single image object into the database  
+> saves a single image object into the database  
